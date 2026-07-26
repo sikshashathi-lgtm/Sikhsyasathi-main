@@ -1,159 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ne">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>शिक्षा साथी - Complete Tutor Portal & Agreement</title>
-    <!-- Include html2canvas library for capturing DOM as an image -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Tutor Verification Portal | Shikshya Sathi</title>
+    <!-- Include html2pdf.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary-color: #0d233a; /* Deep Navy Blue */
-            --accent-color: #e69d00;  /* Gold/Yellow */
-            --bg-color: #f4f7f6;
-            --text-color: #333333;
-            --secondary-blue: #1e3c72;
-            --border-color: #e2e8f0;
+            --gov-red: #C8102E;
+            --gov-navy: #002B49;
+            --gov-gold: #D4AF37;
+            --gov-border: #B0BEC5;
+            --bg-color: #F0F4F8;
+            --text-color: #1A252C;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Mukta', 'Roboto', 'Segoe UI', sans-serif;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.5;
             padding: 20px;
         }
 
         .container {
-            max-width: 850px;
-            margin: 20px auto;
+            max-width: 750px;
+            margin: 10px auto;
             background: #ffffff;
-            padding: 35px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 35px 40px;
+            border-radius: 4px;
+            border-top: 6px solid var(--gov-red);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
         }
 
+        /* Header Layout with Logo */
         .header {
             text-align: center;
             margin-bottom: 25px;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 20px;
+            border-bottom: 2px solid var(--gov-navy);
+            padding-bottom: 15px;
             position: relative;
         }
 
-        .header h1 {
-            color: var(--primary-color);
-            font-size: 26px;
-            margin-bottom: 5px;
-        }
-
-        .header h2 {
-            color: var(--accent-color);
-            font-size: 18px;
-            font-weight: 500;
-        }
-
-        .tagline {
-            font-style: italic;
-            color: #666;
-            font-size: 14px;
-            margin-top: 8px;
-        }
-
-        .badge-top {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: rgba(13, 35, 58, 0.1);
-            color: var(--primary-color);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .intro {
-            background: #fff9e6;
-            border-left: 5px solid var(--accent-color);
-            padding: 15px 18px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 25px;
-            font-size: 14px;
-        }
-
-        /* Guidelines Section inside Website */
-        .section-title {
-            font-size: 17px;
-            color: var(--primary-color);
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 6px;
-        }
-
-        .steps-container {
-            display: grid;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-
-        .step-card {
-            background: #fafbfc;
-            border-radius: 8px;
-            padding: 15px;
-            border: 1px solid var(--border-color);
-            position: relative;
-        }
-
-        .step-number {
-            position: absolute;
-            top: -10px;
-            left: 15px;
-            background: var(--secondary-blue);
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
+        .header-logo-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            font-size: 12px;
+            gap: 15px;
+            margin-bottom: 10px;
         }
 
-        .step-content {
-            margin-top: 4px;
+        .brand-logo {
+            height: 65px;
+            width: auto;
+            object-fit: contain;
         }
 
-        .nepali-text {
+        .gov-sub-header {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gov-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header h1 {
+            color: var(--gov-navy);
+            font-size: 26px;
+            font-weight: 800;
+            margin: 2px 0;
+        }
+
+        .header h2 {
+            color: #444;
             font-size: 15px;
             font-weight: 600;
-            color: #1a252f;
-            margin-bottom: 3px;
         }
 
-        .english-text {
-            font-size: 13px;
-            color: #666;
-            font-style: italic;
+        .verified-badge-top {
+            display: inline-block;
+            background: #E8F5E9;
+            color: #2E7D32;
+            border: 1px solid #A5D6A7;
+            padding: 3px 12px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 20px;
+            margin-top: 6px;
         }
 
         .form-section {
-            margin-bottom: 25px;
+            margin-bottom: 22px;
+            border: 1px solid #E2E8F0;
+            padding: 18px;
+            border-radius: 6px;
+            background: #FAFBFD;
+        }
+
+        .form-section h3 {
+            color: var(--gov-navy);
+            font-size: 15px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--gov-gold);
+            display: inline-block;
+            padding-bottom: 3px;
+            text-transform: uppercase;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .form-row {
@@ -167,390 +131,309 @@
 
         label {
             display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--primary-color);
+            margin-bottom: 4px;
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--gov-navy);
         }
 
         input[type="text"],
         input[type="email"],
         input[type="tel"],
-        select,
-        textarea {
+        select {
             width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 14px;
+            padding: 9px 12px;
+            border: 1px solid #CBD5E1;
+            border-radius: 4px;
+            font-size: 13.5px;
+            background: #fff;
+        }
+
+        input:focus, select:focus {
             outline: none;
-            transition: border-color 0.3s;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--accent-color);
-        }
-
-        input[type="file"] {
-            font-size: 14px;
-            padding: 5px 0;
-        }
-
-        .checkbox-container {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            margin: 20px 0;
-            font-size: 14px;
-            background: #f8fafc;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-
-        .checkbox-container input {
-            margin-top: 3px;
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
+            border-color: var(--gov-navy);
+            box-shadow: 0 0 0 2px rgba(0, 43, 73, 0.15);
         }
 
         .submit-btn {
-            background-color: var(--primary-color);
+            background-color: var(--gov-navy);
             color: white;
             border: none;
             padding: 14px 20px;
             font-size: 16px;
             font-weight: bold;
             width: 100%;
-            border-radius: 6px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: background 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.2s;
         }
 
         .submit-btn:hover {
-            background-color: #15385c;
+            background-color: #001A2C;
         }
 
-        /* Success Message Box */
-        #successMessage {
-            display: none;
-            background: #e1f5fe;
-            border: 1px solid #b3e5fc;
-            padding: 25px;
-            border-radius: 6px;
-            color: #0277bd;
-            margin-top: 20px;
-        }
-
-        #successMessage h3 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .instruction-box {
-            background: #fff;
-            border-left: 4px solid var(--accent-color);
-            padding: 12px;
-            margin: 15px 0;
-            font-size: 13px;
-            color: #333;
-            text-align: left;
-        }
-
-        #successMessage a.email-action-btn {
-            display: inline-block;
-            margin-top: 10px;
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-
-        /* HIDDEN MASTER CAPTURE CARDS (Page 1: Profile & Documents, Page 2: Agreement & Signature) */
-        .capture-wrapper {
+        /* --- STRICT PDF TEMPLATE STYLING --- */
+        #pdfRenderWrapper {
             position: absolute;
+            top: 0;
             left: -9999px;
-            width: 800px;
-            background: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 794px;
         }
 
-        .master-card {
-            width: 800px;
-            background: #ffffff;
-            padding: 40px;
-            border: 5px solid #0d233a;
-            border-radius: 12px;
-            margin-bottom: 40px;
+        .pdf-page {
+            width: 794px;
+            height: 1122px; /* Precise A4 Height */
+            padding: 40px 50px;
             box-sizing: border-box;
+            position: relative;
+            background: #ffffff;
+            page-break-after: always;
+            border: 12px solid #fff;
+            outline: 2px solid var(--gov-navy);
         }
 
-        .card-header {
+        .pdf-page-inner {
+            border: 1px solid #CBD5E1;
+            height: 100%;
+            padding: 25px;
+            position: relative;
+        }
+
+        /* Official PDF Header with Logo */
+        .pdf-header {
             text-align: center;
-            border-bottom: 2px solid #e69d00;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
+            border-bottom: 2px solid var(--gov-red);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            position: relative;
         }
 
-        .card-header h2 {
-            color: #0d233a;
-            font-size: 24px;
-        }
-
-        .card-top-section {
-            display: flex;
-            gap: 25px;
-            margin-bottom: 30px;
-            align-items: flex-start;
-        }
-
-        /* Enforced large & perfect square photo box */
-        .card-passport-box {
-            width: 160px;
-            height: 160px;
-            border: 3px solid #0d233a;
-            background: #f9f9f9;
+        .pdf-header-top {
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            text-align: center;
+            gap: 15px;
+            margin-bottom: 5px;
+        }
+
+        .pdf-logo {
+            height: 55px;
+            width: auto;
+        }
+
+        .pdf-header .gov-top-title {
+            font-size: 13px;
+            color: var(--gov-red);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .pdf-header h2 {
+            color: var(--gov-navy);
+            font-size: 22px;
+            font-weight: 800;
+            margin: 2px 0;
+        }
+
+        .pdf-header .doc-type {
             font-size: 12px;
-            color: #666;
-            border-radius: 8px;
-            flex-shrink: 0;
-        }
-
-        .card-passport-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .card-info {
-            flex: 1;
-        }
-
-        .card-info p {
-            font-size: 14px;
-            margin-bottom: 7px;
-            color: #333;
-        }
-
-        .card-info span {
+            background: var(--gov-navy);
+            color: #fff;
+            display: inline-block;
+            padding: 2px 10px;
+            margin-top: 5px;
             font-weight: bold;
-            color: #0d233a;
         }
 
-        .card-docs-section {
-            margin-top: 20px;
-            border-top: 1px solid #ddd;
-            padding-top: 20px;
+        /* Watermark effect */
+        .watermark {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-30deg);
+            font-size: 55px;
+            color: rgba(212, 175, 55, 0.12);
+            font-weight: 900;
+            border: 6px dashed rgba(212, 175, 55, 0.2);
+            padding: 10px 30px;
+            text-transform: uppercase;
+            pointer-events: none;
+            white-space: nowrap;
         }
 
-        .card-docs-section h4 {
-            color: #0d233a;
-            font-size: 16px;
-            margin-bottom: 15px;
-            border-left: 4px solid #e69d00;
-            padding-left: 8px;
-        }
-
-        .doc-container {
-            margin-bottom: 25px;
-        }
-
-        .doc-container label {
-            display: block;
-            font-size: 13px;
-            font-weight: bold;
-            color: #555;
-            margin-bottom: 6px;
-        }
-
-        /* Large clean preview boxes for Citizenship & Marksheet */
-        .doc-preview-box {
-            width: 100%;
-            height: 380px;
-            border: 2px dashed #bbb;
-            background: #fdfdfd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+        .pdf-footer {
+            position: absolute;
+            bottom: 15px;
+            left: 25px;
+            right: 25px;
             text-align: center;
-            font-size: 13px;
-            color: #666;
-            border-radius: 6px;
-        }
-
-        .doc-preview-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        /* Agreement Document Styling */
-        .agreement-box {
-            font-size: 13px;
-            line-height: 1.7;
-            color: #333;
-        }
-
-        .agreement-box h3 {
-            color: var(--primary-color);
-            margin-bottom: 12px;
-            font-size: 18px;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 5px;
-        }
-
-        .agreement-box ol {
-            margin-left: 20px;
-            margin-bottom: 25px;
-        }
-
-        .agreement-box ol li {
-            margin-bottom: 10px;
-        }
-
-        .signature-section {
+            border-top: 1px solid #E2E8F0;
+            padding-top: 8px;
+            font-size: 10px;
+            color: #64748B;
             display: flex;
             justify-content: space-between;
-            margin-top: 40px;
-            border-top: 1px solid #ccc;
-            padding-top: 25px;
+        }
+
+        .agreement-body {
+            font-size: 12.5px;
+            line-height: 1.8;
+            color: #222;
+        }
+
+        .agreement-body h3 {
+            text-align: center;
+            color: var(--gov-navy);
+            margin: 15px 0;
+            text-decoration: underline;
+            font-size: 15px;
+        }
+
+        .agreement-body ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
         }
 
         .sig-box {
-            width: 250px;
             text-align: center;
+            width: 200px;
+            border-top: 1px dashed #333;
+            padding-top: 5px;
+            font-weight: bold;
+            font-size: 11px;
+            color: var(--gov-navy);
         }
 
-        .sig-line {
-            border-top: 1px solid #333;
-            margin-top: 50px;
-            margin-bottom: 5px;
-        }
-
-        .sig-img-container {
-            height: 50px;
+        .pdf-doc-box {
+            width: 100%;
+            height: 780px;
+            border: 2px solid #CBD5E1;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+            background: #F8FAFC;
         }
 
-        .sig-img-container img {
-            max-height: 45px;
-            max-width: 180px;
+        .pdf-doc-box img {
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
+        }
+
+        /* Modal Popup */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 6px;
+            max-width: 460px;
+            width: 90%;
+            text-align: center;
+            border-top: 5px solid #25D366;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 15px 0 10px 0;
+        }
+
+        .close-btn {
+            background-color: #64748B;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Header -->
         <div class="header">
-            <div class="badge-top">शिक्षा साथी</div>
+            <div class="header-logo-container">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiL7dDqEm-oYV5DXpfPm4YM9kpU1IB3uRoxQn6itok7vJskTq8Uts_flkvKk-QRxXK1R7k8fJ3s5pRHCmLbSnlA2uiocm_uwmGOmlPwI90_NOIWnclF8_JW-r3AWE2u36-ExBJSK6L82fZoB_75xwgzzTKwhX4Zza7T_M20GkGI38Y4vLc6Yi1EDMu6FDso/s1254/1000275071.png" alt="Shikshya Sathi Logo" class="brand-logo">
+            </div>
+            <div class="gov-sub-header"></div>
             <h1>शिक्षा साथी (Shikshya Sathi)</h1>
-            <h2>Tutor Identity Verification, Guidelines & Agreement Portal</h2>
-            <p class="tagline">साथ हाम्रो, सफलता तपाईंको</p>
+            <h2>Tutor Verification & Vacancy Registration Portal</h2>
+            <div class="verified-badge-top">✓ Verified Registration Portal</div>
         </div>
 
-        <div class="intro">
-            <b>Welcome!</b> Please carefully review the guidelines below, fill out your accurate details, upload your documents along with your signature, and submit your application to generate your verified dossier and agreement document.
-        </div>
-
-        <!-- Workflow Guidelines Summary -->
-        <h2 class="section-title">Application Workflow & Guidelines (आवेदन र कार्यप्रणाली)</h2>
-        <div class="steps-container">
-            <div class="step-card">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <div class="nepali-text">१. भ्याकेन्सी छनोट (Vacancy Selection)</div>
-                    <div class="english-text">Review and select the appropriate teaching category or location.</div>
-                </div>
-            </div>
-            <div class="step-card">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <div class="nepali-text">२. आवेदन तथा परिचय प्रमाणीकरण (Application & Identity Verification)</div>
-                    <div class="english-text">Submit your form, citizenship number, citizenship card, marksheet, passport photo, and signature.</div>
-                </div>
-            </div>
-            <div class="step-card">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <div class="nepali-text">३. शुल्क, ठेगाना र डेमो क्लास (Fee Payment & Demo Class)</div>
-                    <div class="english-text">Parent details provided after service fee payment, followed by a 2-3 day demo class.</div>
-                </div>
-            </div>
-            <div class="step-card">
-                <div class="step-number">4</div>
-                <div class="step-content">
-                    <div class="nepali-text">४. आचारसंहिता र परीक्षा व्यवस्थापन (Code of Conduct & Exams)</div>
-                    <div class="english-text">Strict adherence to organization terms, weekly exams, and marksheets uploading required.</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Application Form -->
-        <form id="verificationForm" onsubmit="processSubmission(event)">
-            
-            <h2 class="section-title" style="margin-top: 25px;">Tutor Registration Form</h2>
-
-            <!-- Personal Information -->
+        <form id="verificationForm" onsubmit="handleFormSubmit(event)">
             <div class="form-section">
+                <h3>१. व्यक्तिगत विवरण (Personal Information)</h3>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="fullName">Full Name *</label>
-                        <input type="text" id="fullName" required placeholder="Enter your full name">
+                        <label for="fullName">पुरा नाम (Full Name) *</label>
+                        <input type="text" id="fullName" name="name" required placeholder="e.g., Ram Bahadur Shrestha">
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone Number (WhatsApp/Viber) *</label>
-                        <input type="tel" id="phone" required placeholder="e.g., 9800000000">
+                        <label for="phone">सम्पर्क / WhatsApp / Viber *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="e.g., 9800000000">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" required placeholder="your.email@gmail.com">
+                        <label for="email">इमेल (Email Address) *</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@gmail.com">
                     </div>
                     <div class="form-group">
-                        <label for="address">Current Address / Location *</label>
-                        <input type="text" id="address" required placeholder="e.g., Kathmandu, Lalitpur">
+                        <label for="address">हालको ठेगाना (Current Address) *</label>
+                        <input type="text" id="address" name="address" required placeholder="e.g., Nadipur, Pokhara">
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="citizenshipNo">Citizenship Number (नागरिकता नम्बर - Numbers Only) *</label>
-                    <input type="text" id="citizenshipNo" required placeholder="e.g., 27010112345 (Numbers only)" pattern="[0-9/-]+" title="Please enter valid citizenship numbers/format">
                 </div>
             </div>
 
-            <!-- Academic & Teaching Preferences -->
             <div class="form-section">
+                <h3>२. शैक्षणिक योग्यता (Academic Qualification)</h3>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="qualification">Highest Qualification *</label>
-                        <select id="qualification" required>
-                            <option value="">Select Qualification</option>
-                            <option value="+2">+2 / Intermediate</option>
-                            <option value="Bachelor">Bachelor's Degree</option>
-                            <option value="Master">Master's Degree / Above</option>
+                        <label for="qualification">उच्चतम योग्यता (Qualification) *</label>
+                        <select id="qualification" name="qualification" required>
+                            <option value="">छान्नुहोस् (Select)</option>
+                            <option value="+2 Level">+2 / Intermediate</option>
+                            <option value="Bachelor Degree">Bachelor's Degree</option>
+                            <option value="Master Degree">Master's Degree / Higher</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="experience">Teaching Experience *</label>
-                        <select id="experience" required>
-                            <option value="">Select Experience</option>
-                            <option value="Freshers">Freshers / No Experience</option>
+                        <label for="experience">शिक्षण अनुभव (Experience) *</label>
+                        <select id="experience" name="experience" required>
+                            <option value="">छान्नुहोस् (Select)</option>
+                            <option value="Freshers">Freshers / N/A</option>
                             <option value="1-2 Years">1 - 2 Years</option>
                             <option value="3+ Years">3+ Years</option>
                         </select>
@@ -558,246 +441,278 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="subjects">Subjects You Can Teach *</label>
-                    <input type="text" id="subjects" required placeholder="e.g., Mathematics, Science, English (Class 1-10)">
+                    <label for="subjects">पढाउने विषयहरू (Subjects) *</label>
+                    <input type="text" id="subjects" name="subjects" required placeholder="e.g., Mathematics, Science, English">
                 </div>
             </div>
 
-            <!-- Identity & Document Verification Uploads -->
             <div class="form-section">
-                <h3 style="font-size: 15px; color: var(--primary-color); margin-bottom: 10px;">Document & Signature Uploads</h3>
-                
+                <h3>३. प्रमाणिकरण कागजात (Identity Verification Uploads)</h3>
                 <div class="form-group">
-                    <label for="citizenship">Citizenship Card / National ID (Front & Back) *</label>
-                    <input type="file" id="citizenship" accept="image/*" onchange="previewFile(event, 'cardCitizenshipBox')" required>
+                    <label for="citizenship">नागरिकता / राष्ट्रिय परिचयपत्र (Citizenship / ID) *</label>
+                    <input type="file" id="citizenship" accept="image/*" onchange="previewFile(event, 'pdfCitizenshipImg')" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="transcript">Latest Academic Transcript / Marksheet *</label>
-                    <input type="file" id="transcript" accept="image/*" onchange="previewFile(event, 'cardTranscriptBox')" required>
+                    <label for="transcript">शैक्षणिक ट्रान्सक्रिप्ट / मार्कसिट (Transcript/Marksheet) *</label>
+                    <input type="file" id="transcript" accept="image/*" onchange="previewFile(event, 'pdfTranscriptImg')" required>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="photo">Passport Size Photograph (Square) *</label>
-                        <input type="file" id="photo" accept="image/*" onchange="previewFile(event, 'cardPhotoBox')" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signatureFile">Your Signature Image (हस्ताक्षर) *</label>
-                        <input type="file" id="signatureFile" accept="image/*" onchange="previewFile(event, 'cardSigBox')" required>
-                    </div>
+                <div class="form-group">
+                    <label for="photo">पासपोर्ट साइज फोटो (Passport Photo) *</label>
+                    <input type="file" id="photo" accept="image/*" onchange="previewFile(event, 'pdfPhotoImg')" required>
                 </div>
             </div>
 
-            <!-- Terms and Conditions Agreement Checkbox -->
-            <div class="checkbox-container">
-                <input type="checkbox" id="agreeTerms" required>
-                <label for="agreeTerms" style="display: inline; font-weight: normal; cursor: pointer;">
-                    I have thoroughly read, understood, and agreed to all terms, code of conduct, demo policies, and financial guidelines of <strong>शिक्षा साथी (Shikshya Sathi)</strong>. I confirm that all provided details and documents are authentic.
-                </label>
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit" class="submit-btn"><i class="fa-solid fa-file-shield"></i> Generate Master Dossier & Agreement and Open Gmail</button>
+            <button type="submit" class="submit-btn" id="submitBtn">आवेदन पेश गर्नुहोस् र PDF डाउनलोड गर्नुहोस्</button>
         </form>
+    </div>
 
-        <!-- Success Message -->
-        <div id="successMessage">
-            <h3>✅ Master Dossier & Agreement Generated Successfully!</h3>
-            <p>Your comprehensive verification files have been compiled and automatically downloaded to your device storage.</p>
+    <!-- Hidden Official PDF Template -->
+    <div id="pdfRenderWrapper">
+        <div id="pdfRenderContainer">
             
-            <div class="instruction-box">
-                <strong>Important Next Step:</strong><br>
-                1. Click the button below to open Gmail pre-filled with your application details.<br>
-                2. Click the <strong>Attach File (Paperclip icon)</strong> inside Gmail.<br>
-                3. Attach both downloaded master images (Profile/Docs Dossier & Signed Agreement) from your downloads folder and hit send!
+            <!-- PAGE 1: Official Agreement Document -->
+            <div class="pdf-page">
+                <div class="pdf-page-inner">
+                    <div class="watermark">OFFICIAL VERIFIED</div>
+                    <div class="pdf-header">
+                        <div class="pdf-header-top">
+                            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiL7dDqEm-oYV5DXpfPm4YM9kpU1IB3uRoxQn6itok7vJskTq8Uts_flkvKk-QRxXK1R7k8fJ3s5pRHCmLbSnlA2uiocm_uwmGOmlPwI90_NOIWnclF8_JW-r3AWE2u36-ExBJSK6L82fZoB_75xwgzzTKwhX4Zza7T_M20GkGI38Y4vLc6Yi1EDMu6FDso/s1254/1000275071.png" class="pdf-logo" alt="Logo">
+                        </div>
+                        <div class="gov-top-title">शिक्षा साथी - नेपाल</div>
+                        <h2>शिक्षा साथी (SHIKSHYA SATHI)</h2>
+                        <span class="doc-type">OFFICIAL TUTOR AGREEMENT & CODE OF CONDUCT</span>
+                    </div>
+                    
+                    <div class="agreement-body">
+                        <h3>शिक्षक सेवा तथा आचारसंहिता सम्झौता पत्र</h3>
+                        <p>यो सम्झौता <strong>शिक्षा साथी (Shikshya Sathi)</strong> र निवेदक शिक्षक (<strong><span class="pdf-val-name"></span></strong>) बिच होम ट्युसन / अनलाइन शिक्षण सेवा सञ्चालनका लागि आधिकारिक रूपमा कायम गरिएको छ।</p>
+                        
+                        <ol>
+                            <li><strong>विवरणको सत्यता:</strong> पेश गरिएका सम्पूर्ण कागजातहरू (नागरिकता, मार्कसिट, फोटो) पूर्ण रूपमा सत्य र आधिकारिक हुन्। कुनै असत्य विवरण पाइएमा कारबाहीको जिम्मेवार स्वयं हुनुपर्नेछ।</li>
+                            <li><strong>व्यावसायिक अनुशासन:</strong> शिक्षकले संस्थाको मर्यादा, तोकिएको समय, र शिक्षण आचारसंहिताको पूर्ण पालना गर्नुपर्नेछ।</li>
+                            <li><strong>सुरक्षा र प्रमाणीकरण:</strong> कुनै गैरकानुनी गतिविधि वा अनुशासनहीनता भएमा यो अभिलेख सुरक्षा निकायलाई उपलब्ध गराइनेछ।</li>
+                            <li><strong>सेवा शुल्क तथा शर्त:</strong> संस्थाको आधिकारिक नियम र कमिसन ढाँचामा दुवै पक्ष सहमत हुनुपर्नेछ।</li>
+                        </ol>
+                        
+                        <p style="margin-top: 15px;">माथि उल्लेखित सम्पूर्ण शर्तहरू पढेर, बुझेर म आफ्नो राजीखुसीले यो आवेदन दर्ता गर्दछु।</p>
+                        
+                        <div class="signatures">
+                            <div class="sig-box">
+                                <br><br>
+                                अधिकृत हस्ताक्षर<br>
+                                (Shikshya Sathi Authority)
+                            </div>
+                            <div class="sig-box">
+                                <br><br>
+                                <span class="pdf-val-name"></span><br>
+                                शिक्षकको हस्ताक्षर (Tutor)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pdf-footer">
+                        <span>Doc Ref: SS-VERIFIED-2026</span>
+                        <span>Page 1 of 4</span>
+                        <span>Official Record</span>
+                    </div>
+                </div>
             </div>
 
-            <div style="text-align: center;">
-                <a id="emailLink" href="#" class="email-action-btn" target="_blank"><i class="fa-brands fa-google"></i> Open Gmail Compose Window</a>
+            <!-- PAGE 2: Profile Dossier -->
+            <div class="pdf-page">
+                <div class="pdf-page-inner">
+                    <div class="pdf-header">
+                        <div class="pdf-header-top">
+                            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiL7dDqEm-oYV5DXpfPm4YM9kpU1IB3uRoxQn6itok7vJskTq8Uts_flkvKk-QRxXK1R7k8fJ3s5pRHCmLbSnlA2uiocm_uwmGOmlPwI90_NOIWnclF8_JW-r3AWE2u36-ExBJSK6L82fZoB_75xwgzzTKwhX4Zza7T_M20GkGI38Y4vLc6Yi1EDMu6FDso/s1254/1000275071.png" class="pdf-logo" alt="Logo">
+                        </div>
+                        <div class="gov-top-title">शिक्षा साथी - प्रमाणीकरण शाखा</div>
+                        <h2>TUTOR PROFILE & DOSSIER</h2>
+                        <span class="doc-type">CONFIDENTIAL VERIFIED RECORD</span>
+                    </div>
+
+                    <div style="display: flex; gap: 20px; margin-bottom: 20px; align-items: center; border: 1px solid #CBD5E1; padding: 15px; background: #F8FAFC;">
+                        <div style="width: 120px; height: 140px; border: 2px solid var(--gov-navy); overflow: hidden; background: #fff;">
+                            <img id="pdfPhotoImg" style="width: 100%; height: 100%; object-fit: cover;" alt="Passport Photo">
+                        </div>
+                        <div style="flex: 1; font-size: 13px; line-height: 1.8;">
+                            <p><strong>नाम (Full Name):</strong> <span class="pdf-val-name"></span></p>
+                            <p><strong>सम्पर्क नं (Phone):</strong> <span id="pdfValPhone"></span></p>
+                            <p><strong>इमेल (Email):</strong> <span id="pdfValEmail"></span></p>
+                            <p><strong>ठेगाना (Address):</strong> <span id="pdfValAddress"></span></p>
+                            <p><strong>योग्यता (Qualification):</strong> <span id="pdfValQual"></span></p>
+                            <p><strong>अनुभव (Experience):</strong> <span id="pdfValExp"></span></p>
+                            <p><strong>विषयहरू (Subjects):</strong> <span id="pdfValSub"></span></p>
+                        </div>
+                    </div>
+
+                    <h4 style="color: var(--gov-navy); border-bottom: 2px solid var(--gov-gold); padding-bottom: 4px; margin-top: 15px; font-size: 13px;">PASSPORT PHOTOGRAPH RECORD</h4>
+                    <div class="pdf-doc-box" style="height: 580px;">
+                        <img id="pdfPhotoImgFull" alt="Passport Photo Full">
+                    </div>
+
+                    <div class="pdf-footer">
+                        <span>Doc Ref: SS-VERIFIED-2026</span>
+                        <span>Page 2 of 4</span>
+                        <span>Official Record</span>
+                    </div>
+                </div>
             </div>
+
+            <!-- PAGE 3: Citizenship Document -->
+            <div class="pdf-page">
+                <div class="pdf-page-inner">
+                    <div class="pdf-header">
+                        <div class="pdf-header-top">
+                            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiL7dDqEm-oYV5DXpfPm4YM9kpU1IB3uRoxQn6itok7vJskTq8Uts_flkvKk-QRxXK1R7k8fJ3s5pRHCmLbSnlA2uiocm_uwmGOmlPwI90_NOIWnclF8_JW-r3AWE2u36-ExBJSK6L82fZoB_75xwgzzTKwhX4Zza7T_M20GkGI38Y4vLc6Yi1EDMu6FDso/s1254/1000275071.png" class="pdf-logo" alt="Logo">
+                        </div>
+                        <div class="gov-top-title">शिक्षा साथी - प्रमाणीकरण शाखा</div>
+                        <h2>IDENTITY VERIFICATION ATTACHMENT</h2>
+                        <span class="doc-type">CITIZENSHIP / NATIONAL ID</span>
+                    </div>
+
+                    <div class="pdf-doc-box">
+                        <img id="pdfCitizenshipImg" alt="Citizenship Document">
+                    </div>
+
+                    <div class="pdf-footer">
+                        <span>Doc Ref: SS-VERIFIED-2026</span>
+                        <span>Page 3 of 4</span>
+                        <span>Official Record</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 4: Academic Document -->
+            <div class="pdf-page">
+                <div class="pdf-page-inner">
+                    <div class="pdf-header">
+                        <div class="pdf-header-top">
+                            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiL7dDqEm-oYV5DXpfPm4YM9kpU1IB3uRoxQn6itok7vJskTq8Uts_flkvKk-QRxXK1R7k8fJ3s5pRHCmLbSnlA2uiocm_uwmGOmlPwI90_NOIWnclF8_JW-r3AWE2u36-ExBJSK6L82fZoB_75xwgzzTKwhX4Zza7T_M20GkGI38Y4vLc6Yi1EDMu6FDso/s1254/1000275071.png" class="pdf-logo" alt="Logo">
+                        </div>
+                        <div class="gov-top-title">शिक्षा साथी - प्रमाणीकरण शाखा</div>
+                        <h2>ACADEMIC CREDENTIAL ATTACHMENT</h2>
+                        <span class="doc-type">TRANSCRIPT / MARKSHEET</span>
+                    </div>
+
+                    <div class="pdf-doc-box">
+                        <img id="pdfTranscriptImg" alt="Academic Transcript Document">
+                    </div>
+
+                    <div class="pdf-footer">
+                        <span>Doc Ref: SS-VERIFIED-2026</span>
+                        <span>Page 4 of 4</span>
+                        <span>Official Record</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <!-- HIDDEN CAPTURE CONTAINER 1: PROFILE & VERIFIED DOCUMENTS DOSSIER -->
-    <div class="capture-wrapper">
-        <div class="master-card" id="captureCard1">
-            <div class="card-header">
-                <h2>शिक्षा साथी (Shikshya Sathi)</h2>
-                <p style="font-size: 13px; color: #e69d00; font-weight: bold;">Master Tutor Identity Verification & Academic Dossier</p>
-            </div>
-            
-            <div class="card-top-section">
-                <div class="card-passport-box" id="cardPhotoBox">
-                    Passport Photo
-                </div>
-                
-                <div class="card-info">
-                    <p><span>Full Name:</span> <span id="cardName"></span></p>
-                    <p><span>Phone:</span> <span id="cardPhone"></span></p>
-                    <p><span>Email:</span> <span id="cardEmail"></span></p>
-                    <p><span>Current Location / Address:</span> <span id="cardAddress"></span></p>
-                    <p><span>Citizenship No:</span> <span id="cardCitizenshipNo"></span></p>
-                    <p><span>Qualification:</span> <span id="cardQual"></span></p>
-                    <p><span>Experience:</span> <span id="cardExp"></span></p>
-                    <p><span>Subjects:</span> <span id="cardSub"></span></p>
-                </div>
-            </div>
-
-            <div class="card-docs-section">
-                <h4>Verified Documents & Academic Records</h4>
-                
-                <div class="doc-container">
-                    <label>Citizenship Card / National ID:</label>
-                    <div class="doc-preview-box" id="cardCitizenshipBox">Citizenship ID Preview</div>
-                </div>
-
-                <div class="doc-container">
-                    <label>Academic Transcript / Marksheet:</label>
-                    <div class="doc-preview-box" id="cardTranscriptBox">Academic Transcript Preview</div>
-                </div>
-            </div>
-
-            <div style="text-align: center; border-top: 1px solid #ddd; padding-top: 15px; margin-top: 10px; font-size: 11px; color: #777;">
-                साथ हाम्रो, सफलता तपाईंको — Official Shikshya Sathi Submission Record (Part 1)
-            </div>
-        </div>
-
-        <!-- HIDDEN CAPTURE CONTAINER 2: TERMS, CONDITIONS & SIGNED AGREEMENT -->
-        <div class="master-card" id="captureCard2">
-            <div class="card-header">
-                <h2>शिक्षा साथी (Shikshya Sathi)</h2>
-                <p style="font-size: 13px; color: #e69d00; font-weight: bold;">Tutor Terms, Conditions & Legal Binding Agreement</p>
-            </div>
-
-            <div class="agreement-box">
-                <h3>ट्युटर आचारसंहिता तथा सेवा शर्तहरू (Terms & Conditions)</h3>
-                <ol>
-                    <li><strong>डेमो कक्षा नियम (Demo Class Policy):</strong> अभिभावकसँग सम्पर्क जोडिएपछि अनिवार्य रूपमा २–३ दिनको डेमो कक्षा सञ्चालन गर्नुपर्नेछ। डेमो कक्षा अस्वीकृत भएमा नियम अनुसार शुल्क फिर्ता हुनेछ।</li>
-                    <li><strong>प्रत्यक्ष सम्झौता निषेध (No Direct Agreement):</strong> संस्थाको पूर्वस्वीकृति बिना अभिभावकसँग व्यक्तिगत रूपमा ट्युसन निरन्तरता गर्ने वा सम्पर्क लुकाउने कार्य गरेमा ट्युटरलाई प्लेटफर्मबाट तत्काल निष्कासन गरिनेछ।</li>
-                    <li><strong>नियमितता र परीक्षा (Exams & Evaluation):</strong> ट्युटरले विद्यार्थीको साप्ताहिक/मासिक परीक्षा सञ्चालन गरी रिजल्ट पाना (Marksheet) शिक्षा साथी र अभिभावक दुवैलाई समयमै बुझाउनुपर्नेछ।</li>
-                    <li><strong>अनुशासन र आचारसंहिता (Conduct):</strong> पठनपाठन दौरान नैतिक आचरण उच्च राख्नुपर्नेछ तथा कुनै पनि गैरव्यावसायिक गतिविधि सख्त निषेध गरिएको छ।</li>
-                </ol>
-
-                <div style="background: #fff9e6; border-left: 4px solid #e69d00; padding: 10px; margin-top: 15px; font-size: 12px;">
-                    <strong>Declaration:</strong> I hereby declare that all information and documents provided by me are completely genuine, and I agree to strictly abide by all the terms and conditions outlined by शिक्षा साथी.
-                </div>
-            </div>
-
-            <div class="signature-section">
-                <div class="sig-box">
-                    <p style="font-size: 12px; font-weight: bold; color: #0d233a;">Authorized Signature</p>
-                    <div class="sig-line"></div>
-                    <p style="font-size: 11px; color: #666;">For Shikshya Sathi Management</p>
-                </div>
-                <div class="sig-box">
-                    <p style="font-size: 12px; font-weight: bold; color: #0d233a;" id="signNameDisplay">Tutor Signature</p>
-                    <div class="sig-img-container" id="cardSigBox">
-                        <span>Signature Preview</span>
-                    </div>
-                    <div class="sig-line"></div>
-                    <p style="font-size: 11px; color: #666;">Applicant Digital Signature</p>
-                </div>
-            </div>
-
-            <div style="text-align: center; border-top: 1px solid #ddd; padding-top: 15px; margin-top: 25px; font-size: 11px; color: #777;">
-                साथ हाम्रो, सफलता तपाईंको — Official Shikshya Sathi Agreement Record (Part 2)
-            </div>
+    <!-- WhatsApp Popup Modal -->
+    <div class="modal-overlay" id="whatsappModal">
+        <div class="modal-content">
+            <h3 style="color: var(--gov-navy); margin-bottom: 10px;">✅ फारम सफलतापुर्वक पेश भयो!</h3>
+            <p style="font-size: 13.5px; color: #475569;">तपाईँको आवेदन दर्ता भयो र PDF डाउनलोड भएको छ।</p>
+            <p style="font-size: 13px; color: #1E293B; margin-top: 10px;"><strong>कृपया भ्याकेन्सी प्रमाणीकरणका लागि डाउनलोड भएको PDF फाइल WhatsApp मा पठाउनुहोस्:</strong></p>
+            <a href="https://wa.me/9779768006667?text=Hello%20Shikshya%20Sathi%20Team,%20I%20have%20submitted%20my%20application.%20Attached%20is%20my%20generated%20PDF." target="_blank" class="whatsapp-btn">📲 Open WhatsApp (9768006667)</a>
+            <br>
+            <button type="button" class="close-btn" onclick="closeModal()">बन्द गर्नुहोस् (Close)</button>
         </div>
     </div>
 
     <script>
-        // Helper function to read user uploaded files and display previews inside the respective master card container boxes
-        function previewFile(event, boxId) {
+        function previewFile(event, imgId) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const box = document.getElementById(boxId);
-                    box.innerHTML = `<img src="${e.target.result}" alt="Uploaded Asset">`;
+                    document.getElementById(imgId).src = e.target.result;
+                    if(imgId === 'pdfPhotoImg') {
+                        document.getElementById('pdfPhotoImgFull').src = e.target.result;
+                    }
                 }
                 reader.readAsDataURL(file);
             }
         }
 
-        async function processSubmission(event) {
+        async function handleFormSubmit(event) {
             event.preventDefault();
 
-            const fullName = document.getElementById('fullName').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            const address = document.getElementById('address').value;
-            const citizenshipNo = document.getElementById('citizenshipNo').value;
-            const qualification = document.getElementById('qualification').value;
-            const experience = document.getElementById('experience').value;
-            const subjects = document.getElementById('subjects').value;
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerText = "कृपया पर्खनुहोस्, दर्ता हुँदैछ...";
 
-            // Map form text fields to master capture container 1
-            document.getElementById('cardName').innerText = fullName;
-            document.getElementById('cardPhone').innerText = phone;
-            document.getElementById('cardEmail').innerText = email;
-            document.getElementById('cardAddress').innerText = address;
-            document.getElementById('cardCitizenshipNo').innerText = citizenshipNo;
-            document.getElementById('cardQual').innerText = qualification;
-            document.getElementById('cardExp').innerText = experience;
-            document.getElementById('cardSub').innerText = subjects;
+            // Values Get गर्ने
+            const fullNameVal = document.getElementById('fullName').value;
+            const phoneVal = document.getElementById('phone').value;
+            const emailVal = document.getElementById('email').value;
+            const addressVal = document.getElementById('address').value;
+            const qualVal = document.getElementById('qualification').value;
+            const expVal = document.getElementById('experience').value;
+            const subVal = document.getElementById('subjects').value;
 
-            // Update signature name display on agreement card
-            document.getElementById('signNameDisplay').innerText = fullName;
+            // PDF मा डाटा Populate गर्ने
+            document.querySelectorAll('.pdf-val-name').forEach(el => el.innerText = fullNameVal);
+            document.getElementById('pdfValPhone').innerText = phoneVal;
+            document.getElementById('pdfValEmail').innerText = emailVal;
+            document.getElementById('pdfValAddress').innerText = addressVal;
+            document.getElementById('pdfValQual').innerText = qualVal;
+            document.getElementById('pdfValExp').innerText = expVal;
+            document.getElementById('pdfValSub').innerText = subVal;
 
-            const safeName = fullName.replace(/\s+/g, '_');
+            // JSON Payload तयार पार्ने
+            const payload = {
+                name: fullNameVal,
+                phone: phoneVal,
+                email: emailVal,
+                address: addressVal,
+                qualification: qualVal,
+                experience: expVal,
+                subjects: subVal
+            };
+
+            const scriptURL = "https://script.google.com/macros/s/AKfycbz-a2P1Cu7MaK2ABgKn9oLscgH_brKBchDMzjY99m0s_91DTp7ZCXDA4whAv41CsYwz/exec";
 
             try {
-                // Render Master Card 1 (Profile & Docs Dossier)
-                const captureElement1 = document.getElementById('captureCard1');
-                const canvas1 = await html2canvas(captureElement1, { scale: 2 });
-                const imageURL1 = canvas1.toDataURL('image/png');
+                // 1. Submit Data to Google Apps Script
+                await fetch(scriptURL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: {
+                        "Content-Type": "text/plain"
+                    },
+                    body: JSON.stringify(payload)
+                });
 
-                const downloadLink1 = document.createElement('a');
-                downloadLink1.href = imageURL1;
-                downloadLink1.download = `ShikshyaSathi_MasterDossier_${safeName}.png`;
-                document.body.appendChild(downloadLink1);
-                downloadLink1.click();
-                document.body.removeChild(downloadLink1);
+                // 2. Generate and Download PDF
+                const pdfElement = document.getElementById('pdfRenderContainer');
+                const pdfOptions = {
+                    margin:       0,
+                    filename:     `ShikshyaSathi_Verified_Dossier_${fullNameVal.replace(/\s+/g, '_')}.pdf`,
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { scale: 2, useCORS: true, scrollY: 0 },
+                    jsPDF:        { unit: 'pt', format: 'a4', orientation: 'portrait' }
+                };
 
-                // Render Master Card 2 (Terms, Agreement & Signatures)
-                const captureElement2 = document.getElementById('captureCard2');
-                const canvas2 = await html2canvas(captureElement2, { scale: 2 });
-                const imageURL2 = canvas2.toDataURL('image/png');
+                await html2pdf().set(pdfOptions).from(pdfElement).save();
 
-                const downloadLink2 = document.createElement('a');
-                downloadLink2.href = imageURL2;
-                downloadLink2.download = `ShikshyaSathi_SignedAgreement_${safeName}.png`;
-                document.body.appendChild(downloadLink2);
-                downloadLink2.click();
-                document.body.removeChild(downloadLink2);
+                // 3. Show Success WhatsApp Modal
+                document.getElementById('whatsappModal').style.display = 'flex';
 
             } catch (error) {
-                console.error("Master image generation failed:", error);
+                console.error("Submission/PDF Error:", error);
+                alert("डाटा सबमिट गर्दा समस्या आयो, कृपया पुनः प्रयास गर्नुहोस्।");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "आवेदन पेश गर्नुहोस् र PDF डाउनलोड गर्नुहोस्";
             }
+        }
 
-            // Setup Gmail web intent link pointing to edunextpokhara@gmail.com
-            const recipient = "edunextpokhara@gmail.com";
-            const emailSubject = encodeURIComponent(`Master Tutor Verification Dossier & Agreement - ${fullName}`);
-            const emailBody = encodeURIComponent(
-                `Dear Shikshya Sathi Team,\n\n` +
-                `Please find my tutor application & verified details below:\n\n` +
-                `- Full Name: ${fullName}\n` +
-                `- Phone: ${phone}\n` +
-                `- Citizenship No: ${citizenshipNo}\n` +
-                `- Current Location: ${address}\n` +
-                `- Subjects: ${subjects}\n\n` +
-                `[NOTE: Please attach both auto-downloaded images ('ShikshyaSathi_MasterDossier...' and 'ShikshyaSathi_SignedAgreement...') containing my photo, citizenship ID, marksheet, and signed agreement to this email before sending]\n\n` +
-                `साथ हाम्रो, सफलता तपाईंको\n` +
-                `Regards,\n${fullName}`
-            );
-
-            document.getElementById('emailLink').href = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipient}&su=${emailSubject}&body=${emailBody}`;
-
-            // Switch interface view
-            document.getElementById('verificationForm').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        function closeModal() {
+            document.getElementById('whatsappModal').style.display = 'none';
         }
     </script>
 </body>
