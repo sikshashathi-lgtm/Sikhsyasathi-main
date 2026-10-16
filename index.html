@@ -11,7 +11,6 @@
             --gov-red: #C8102E;
             --gov-navy: #002B49;
             --gov-gold: #D4AF37;
-            --gov-border: #B0BEC5;
             --bg-color: #F0F4F8;
             --text-color: #1A252C;
         }
@@ -40,13 +39,11 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
         }
 
-        /* Header Layout with Logo */
         .header {
             text-align: center;
             margin-bottom: 25px;
             border-bottom: 2px solid var(--gov-navy);
             padding-bottom: 15px;
-            position: relative;
         }
 
         .header-logo-container {
@@ -60,22 +57,12 @@
         .brand-logo {
             height: 65px;
             width: auto;
-            object-fit: contain;
-        }
-
-        .gov-sub-header {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--gov-red);
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .header h1 {
             color: var(--gov-navy);
             font-size: 26px;
             font-weight: 800;
-            margin: 2px 0;
         }
 
         .header h2 {
@@ -153,6 +140,36 @@
             box-shadow: 0 0 0 2px rgba(0, 43, 73, 0.15);
         }
 
+        .status-msg {
+            font-size: 12.5px;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        /* Profile Card (Shows Name, Phone, and Time ONLY) */
+        .existing-profile-card {
+            display: none;
+            background: #FFFBEB;
+            border: 1.5px solid #F59E0B;
+            padding: 16px 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .existing-profile-card h4 {
+            color: #B45309;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .profile-details-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 14px;
+            color: #334155;
+        }
+
         .submit-btn {
             background-color: var(--gov-navy);
             color: white;
@@ -167,11 +184,12 @@
             transition: all 0.2s;
         }
 
-        .submit-btn:hover {
-            background-color: #001A2C;
+        .submit-btn:disabled {
+            background-color: #94A3B8;
+            cursor: not-allowed;
         }
 
-        /* Modal Popup */
+        /* Modal Overlay */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -199,7 +217,6 @@
         .whatsapp-btn {
             background-color: #25D366;
             color: white;
-            border: none;
             padding: 12px 20px;
             font-size: 14px;
             font-weight: bold;
@@ -227,10 +244,15 @@
             <div class="header-logo-container">
                 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiL7dDqEm-oYV5DXpfPm4YM9kpU1IB3uRoxQn6itok7vJskTq8Uts_flkvKk-QRxXK1R7k8fJ3s5pRHCmLbSnlA2uiocm_uwmGOmlPwI90_NOIWnclF8_JW-r3AWE2u36-ExBJSK6L82fZoB_75xwgzzTKwhX4Zza7T_M20GkGI38Y4vLc6Yi1EDMu6FDso/s1254/1000275071.png" alt="Shikshya Sathi Logo" class="brand-logo">
             </div>
-            <div class="gov-sub-header"></div>
             <h1>शिक्षा साथी (Shikshya Sathi)</h1>
             <h2>Tutor Verification & Vacancy Registration Portal</h2>
             <div class="verified-badge-top">✓ Verified Registration Portal</div>
+        </div>
+
+        <!-- Registered Profile View (Shows Name, Phone, Time ONLY) -->
+        <div class="existing-profile-card" id="profileCard">
+            <h4>⚠️ यो सम्पर्क नम्बर पहिले नै दर्ता भइसकेको छ!</h4>
+            <div class="profile-details-grid" id="profileContent"></div>
         </div>
 
         <form id="verificationForm" onsubmit="handleFormSubmit(event)">
@@ -239,22 +261,23 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="fullName">पुरा नाम (Full Name) *</label>
-                        <input type="text" id="fullName" name="name" required placeholder="e.g., Ram Bahadur Shrestha">
+                        <input type="text" id="fullName" name="Name" required placeholder="e.g., Ram Bahadur Shrestha">
                     </div>
                     <div class="form-group">
                         <label for="phone">सम्पर्क / WhatsApp / Viber *</label>
-                        <input type="tel" id="phone" name="phone" required placeholder="e.g., 9800000000">
+                        <input type="tel" id="phone" name="Phone" required placeholder="e.g., 9800000000" oninput="checkDuplicatePhone()">
+                        <div id="checkStatus" class="status-msg"></div>
                     </div>
                 </div>
 
-                <div class="form-row">
+                <div class="form-row" style="margin-top: 10px;">
                     <div class="form-group">
                         <label for="email">इमेल (Email Address) *</label>
-                        <input type="email" id="email" name="email" required placeholder="your.email@gmail.com">
+                        <input type="email" id="email" name="Email" required placeholder="your.email@gmail.com">
                     </div>
                     <div class="form-group">
                         <label for="address">हालको ठेगाना (Current Address) *</label>
-                        <input type="text" id="address" name="address" required placeholder="e.g., Nadipur, Pokhara">
+                        <input type="text" id="address" name="Address" required placeholder="e.g., Nadipur, Pokhara">
                     </div>
                 </div>
             </div>
@@ -264,7 +287,7 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="qualification">उच्चतम योग्यता (Qualification) *</label>
-                        <select id="qualification" name="qualification" required>
+                        <select id="qualification" name="Qualification" required>
                             <option value="">छान्नुहोस् (Select)</option>
                             <option value="+2 Level">+2 / Intermediate</option>
                             <option value="Bachelor Degree">Bachelor's Degree</option>
@@ -273,7 +296,7 @@
                     </div>
                     <div class="form-group">
                         <label for="experience">शिक्षण अनुभव (Experience) *</label>
-                        <select id="experience" name="experience" required>
+                        <select id="experience" name="Experience" required>
                             <option value="">छान्नुहोस् (Select)</option>
                             <option value="Freshers">Freshers / N/A</option>
                             <option value="1-2 Years">1 - 2 Years</option>
@@ -284,7 +307,7 @@
 
                 <div class="form-group">
                     <label for="subjects">पढाउने विषयहरू (Subjects) *</label>
-                    <input type="text" id="subjects" name="subjects" required placeholder="e.g., Mathematics, Science, English">
+                    <input type="text" id="subjects" name="Subjects" required placeholder="e.g., Mathematics, Science, English">
                 </div>
             </div>
 
@@ -305,6 +328,65 @@
     </div>
 
     <script>
+        const scriptURL = "https://script.google.com/macros/s/AKfycbxwmBWm2ssdhlQ9S3dNU7ezUc9nCdC1uVAtT8X5L39umCtAMnI5_rKnJ0JytvyU-D4O/exec";
+        let debounceTimer;
+
+        // Duplicate Check Function (Checks Phone ONLY)
+        function checkDuplicatePhone() {
+            clearTimeout(debounceTimer);
+            const phoneVal = document.getElementById('phone').value.trim();
+            const checkStatus = document.getElementById('checkStatus');
+            const profileCard = document.getElementById('profileCard');
+            const profileContent = document.getElementById('profileContent');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (phoneVal.length < 10) {
+                checkStatus.innerText = "";
+                profileCard.style.display = "none";
+                submitBtn.disabled = false;
+                return;
+            }
+
+            checkStatus.style.color = "#0284C7";
+            checkStatus.innerText = "नम्बर जाँच गर्दैछ...";
+
+            debounceTimer = setTimeout(async () => {
+                try {
+                    const response = await fetch(scriptURL, {
+                        method: "POST",
+                        headers: { "Content-Type": "text/plain" },
+                        body: JSON.stringify({ action: "checkUser", phone: phoneVal })
+                    });
+
+                    const result = await response.json();
+
+                    if (result.exists) {
+                        checkStatus.style.color = "#DC2626";
+                        checkStatus.innerText = "❌ यो सम्पर्क नम्बर पहिले नै दर्ता छ!";
+                        submitBtn.disabled = true;
+
+                        // Only Name, Phone, Time Display
+                        let p = result.profile;
+                        profileContent.innerHTML = `
+                            <div><strong>नाम (Name):</strong> ${p.Name || 'N/A'}</div>
+                            <div><strong>फोन नम्बर (Phone):</strong> ${p.Phone || phoneVal}</div>
+                            <div><strong>दर्ता समय (Time):</strong> ${p.Time || 'अघिल्लो दर्ता'}</div>
+                        `;
+                        profileCard.style.display = "block";
+                    } else {
+                        checkStatus.style.color = "#16A34A";
+                        checkStatus.innerText = "✓ यो नम्बर नयाँ दर्ताका लागि उपलब्ध छ।";
+                        profileCard.style.display = "none";
+                        submitBtn.disabled = false;
+                    }
+                } catch (err) {
+                    console.error("Check Error:", err);
+                    checkStatus.innerText = "";
+                }
+            }, 600);
+        }
+
+        // Form Submit Function
         async function handleFormSubmit(event) {
             event.preventDefault();
 
@@ -312,41 +394,31 @@
             submitBtn.disabled = true;
             submitBtn.innerText = "कृपया पर्खनुहोस्, दर्ता हुँदैछ...";
 
-            // Values Get गर्ने
-            const fullNameVal = document.getElementById('fullName').value;
-            const phoneVal = document.getElementById('phone').value;
-            const emailVal = document.getElementById('email').value;
-            const addressVal = document.getElementById('address').value;
-            const qualVal = document.getElementById('qualification').value;
-            const expVal = document.getElementById('experience').value;
-            const subVal = document.getElementById('subjects').value;
-
-            // JSON Payload तयार पार्ने
-            const payload = {
-                name: fullNameVal,
-                phone: phoneVal,
-                email: emailVal,
-                address: addressVal,
-                qualification: qualVal,
-                experience: expVal,
-                subjects: subVal
+            const formData = {
+                Name: document.getElementById('fullName').value,
+                Phone: document.getElementById('phone').value,
+                Email: document.getElementById('email').value,
+                Address: document.getElementById('address').value,
+                Qualification: document.getElementById('qualification').value,
+                Experience: document.getElementById('experience').value,
+                Subjects: document.getElementById('subjects').value
             };
 
-            const scriptURL = "https://script.google.com/macros/s/AKfycbz-a2P1Cu7MaK2ABgKn9oLscgH_brKBchDMzjY99m0s_91DTp7ZCXDA4whAv41CsYwz/exec";
+            const payload = {
+                action: "register",
+                data: formData
+            };
 
             try {
-                // 1. Submit Data to Google Apps Script
                 await fetch(scriptURL, {
                     method: "POST",
-                    mode: "no-cors",
-                    headers: {
-                        "Content-Type": "text/plain"
-                    },
+                    headers: { "Content-Type": "text/plain" },
                     body: JSON.stringify(payload)
                 });
 
-                // 2. Reset form & Show Success WhatsApp Modal
                 document.getElementById('verificationForm').reset();
+                document.getElementById('checkStatus').innerText = "";
+                document.getElementById('profileCard').style.display = "none";
                 document.getElementById('whatsappModal').style.display = 'flex';
 
             } catch (error) {
