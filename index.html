@@ -146,7 +146,6 @@
             font-weight: 600;
         }
 
-        /* Profile Card (Shows Name, Phone, and Time ONLY) */
         .existing-profile-card {
             display: none;
             background: #FFFBEB;
@@ -189,7 +188,6 @@
             cursor: not-allowed;
         }
 
-        /* Modal Overlay */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -249,7 +247,6 @@
             <div class="verified-badge-top">✓ Verified Registration Portal</div>
         </div>
 
-        <!-- Registered Profile View (Shows Name, Phone, Time ONLY) -->
         <div class="existing-profile-card" id="profileCard">
             <h4>⚠️ यो सम्पर्क नम्बर पहिले नै दर्ता भइसकेको छ!</h4>
             <div class="profile-details-grid" id="profileContent"></div>
@@ -261,11 +258,11 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="fullName">पुरा नाम (Full Name) *</label>
-                        <input type="text" id="fullName" name="Name" required placeholder="e.g., Ram Bahadur Shrestha">
+                        <input type="text" id="fullName" required placeholder="e.g., Ram Bahadur Shrestha">
                     </div>
                     <div class="form-group">
                         <label for="phone">सम्पर्क / WhatsApp / Viber *</label>
-                        <input type="tel" id="phone" name="Phone" required placeholder="e.g., 9800000000" oninput="checkDuplicatePhone()">
+                        <input type="tel" id="phone" required placeholder="e.g., 9800000000" oninput="checkDuplicatePhone()">
                         <div id="checkStatus" class="status-msg"></div>
                     </div>
                 </div>
@@ -273,11 +270,11 @@
                 <div class="form-row" style="margin-top: 10px;">
                     <div class="form-group">
                         <label for="email">इमेल (Email Address) *</label>
-                        <input type="email" id="email" name="Email" required placeholder="your.email@gmail.com">
+                        <input type="email" id="email" required placeholder="your.email@gmail.com">
                     </div>
                     <div class="form-group">
                         <label for="address">हालको ठेगाना (Current Address) *</label>
-                        <input type="text" id="address" name="Address" required placeholder="e.g., Nadipur, Pokhara">
+                        <input type="text" id="address" required placeholder="e.g., Nadipur, Pokhara">
                     </div>
                 </div>
             </div>
@@ -287,7 +284,7 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="qualification">उच्चतम योग्यता (Qualification) *</label>
-                        <select id="qualification" name="Qualification" required>
+                        <select id="qualification" required>
                             <option value="">छान्नुहोस् (Select)</option>
                             <option value="+2 Level">+2 / Intermediate</option>
                             <option value="Bachelor Degree">Bachelor's Degree</option>
@@ -296,7 +293,7 @@
                     </div>
                     <div class="form-group">
                         <label for="experience">शिक्षण अनुभव (Experience) *</label>
-                        <select id="experience" name="Experience" required>
+                        <select id="experience" required>
                             <option value="">छान्नुहोस् (Select)</option>
                             <option value="Freshers">Freshers / N/A</option>
                             <option value="1-2 Years">1 - 2 Years</option>
@@ -307,7 +304,7 @@
 
                 <div class="form-group">
                     <label for="subjects">पढाउने विषयहरू (Subjects) *</label>
-                    <input type="text" id="subjects" name="Subjects" required placeholder="e.g., Mathematics, Science, English">
+                    <input type="text" id="subjects" required placeholder="e.g., Mathematics, Science, English">
                 </div>
             </div>
 
@@ -331,7 +328,6 @@
         const scriptURL = "https://script.google.com/macros/s/AKfycbxwmBWm2ssdhlQ9S3dNU7ezUc9nCdC1uVAtT8X5L39umCtAMnI5_rKnJ0JytvyU-D4O/exec";
         let debounceTimer;
 
-        // Duplicate Check Function (Checks Phone ONLY)
         function checkDuplicatePhone() {
             clearTimeout(debounceTimer);
             const phoneVal = document.getElementById('phone').value.trim();
@@ -365,7 +361,6 @@
                         checkStatus.innerText = "❌ यो सम्पर्क नम्बर पहिले नै दर्ता छ!";
                         submitBtn.disabled = true;
 
-                        // Only Name, Phone, Time Display
                         let p = result.profile;
                         profileContent.innerHTML = `
                             <div><strong>नाम (Name):</strong> ${p.Name || 'N/A'}</div>
@@ -386,7 +381,6 @@
             }, 600);
         }
 
-        // Form Submit Function
         async function handleFormSubmit(event) {
             event.preventDefault();
 
@@ -394,14 +388,15 @@
             submitBtn.disabled = true;
             submitBtn.innerText = "कृपया पर्खनुहोस्, दर्ता हुँदैछ...";
 
+            // Google Sheet का exact headers सँग मिलाएर keys हरू पठाइएको छ
             const formData = {
-                Name: document.getElementById('fullName').value,
-                Phone: document.getElementById('phone').value,
-                Email: document.getElementById('email').value,
-                Address: document.getElementById('address').value,
-                Qualification: document.getElementById('qualification').value,
-                Experience: document.getElementById('experience').value,
-                Subjects: document.getElementById('subjects').value
+                "FULL NAME": document.getElementById('fullName').value,
+                "PHONE NO": document.getElementById('phone').value,
+                "EMAIL ADDRESS": document.getElementById('email').value,
+                "LOCATION": document.getElementById('address').value,
+                "QUALIFICATION": document.getElementById('qualification').value,
+                "EXPERIENCE": document.getElementById('experience').value,
+                "SUBJECT": document.getElementById('subjects').value
             };
 
             const payload = {
